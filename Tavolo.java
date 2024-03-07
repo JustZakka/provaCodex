@@ -11,10 +11,6 @@ public class Tavolo {
         }
     }
 
-    public void setSlots(Slot[][] slot) {
-        this.slots = slot;
-    }
-
     public Slot[][] getSlots() {
         return slots;
     }

@@ -18,13 +18,13 @@ public class Giocatore {
         this.tavoloGiocatore = tavoloGiocatore;
     }
 
-    public void piazzaCartaIniziale(int r, int c) {
+    /*public void piazzaCartaIniziale(int r, int c) {
         tavoloGiocatore.getMatrix()[r][c] = 1;
-    }
+    }*/
 
-    public void analizzaTavolo() {
+    /*public void analizzaTavolo() {
         tavoloGiocatore.printTavolo();
-    }
+    }*/
 
 
 }

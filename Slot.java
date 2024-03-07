@@ -2,7 +2,7 @@ public class Slot {
 
     private int slotOccupato;
 
-    public Slot(int slotOccupato) {
+    public Slot() {
         this.slotOccupato = 0;
     }
 
