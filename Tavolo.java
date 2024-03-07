@@ -1,33 +1,21 @@
-import java.util.ArrayList;
-
 public class Tavolo {
 
-    private int r;
-    private int c;
-    private final int[][] matrix;
+    private Slot[][] slots;
 
     public Tavolo(int r, int c) {
-        this.r = r;
-        this.c = c;
-        this.matrix = new int[r][c];
-    }
-
-    public Tavolo() {
-        this.matrix = new int[5][5];
-    }
-
-    public void printTavolo() {
-        System.out.println("-------------------------");
-        for (int i = 0; i < getMatrix().length; i++) {
-            for (int j = 0; j < getMatrix()[i].length; j++) {
-                System.out.print("[" + getMatrix()[i][j] + "]");
+        this.slots = new Slot[r][c];
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                slots[i][j] = new Slot();
             }
-            System.out.println();
         }
-        System.out.println("-------------------------");
     }
 
-    public int[][] getMatrix() {
-        return matrix;
+    public void setSlots(Slot[][] slot) {
+        this.slots = slot;
+    }
+
+    public Slot[][] getSlots() {
+        return slots;
     }
 }
