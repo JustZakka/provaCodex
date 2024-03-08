@@ -18,13 +18,4 @@ public class Giocatore {
         this.tavoloGiocatore = tavoloGiocatore;
     }
 
-    public void piazzaCartaIniziale(int r, int c) {
-        tavoloGiocatore.getSlots()[r][c].setSlotOccupato(1);
-    }
-
-    public void analizzaTavolo() {
-        tavoloGiocatore.printTavolo();
-    }
-
-
 }

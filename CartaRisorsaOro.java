@@ -1,15 +1,12 @@
 import java.util.ArrayList;
 
-public abstract class CartaRisorsaOro {
+public abstract class CartaRisorsaOro extends CartaNonObiettivo{
 
-    ArrayList<Boolean> angoliFronteDisponibili;
-    ArrayList<Risorsa> risorseFronteAngoli;
-    Risorsa risorsaRetro;
 
-    public CartaRisorsaOro(ArrayList<Boolean> angoliFronteDisponibili, ArrayList<Risorsa> risorseFronteAngoli, Risorsa risorsaRetro) {
-        this.angoliFronteDisponibili = angoliFronteDisponibili;
-        this.risorseFronteAngoli = risorseFronteAngoli;
-        this.risorsaRetro = risorsaRetro;
+    private Risorsa risorsaRetroCentro;
+
+    public CartaRisorsaOro(ArrayList<Risorsa> risorseFronteAngoli, ArrayList<Boolean> angoliFronteDisponibili, ArrayList<Boolean> angoliRetroDisponibili, Risorsa risorsaRetro) {
+        super(risorseFronteAngoli, angoliFronteDisponibili, angoliRetroDisponibili);
+        this.risorsaRetroCentro = risorsaRetro;
     }
-
 }

@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 
-public class CartaOro extends CartaRisorsaOro{
+public class CartaOro extends CartaRisorsaOro {
 
     private int puntiAttribuiti;
     private ArrayList<Risorsa> requisitiRisorse;
 
     //TODO: aggiungere l'attributo requisitiPunti
 
-    public CartaOro(ArrayList<Boolean> angoliFronteDisponibili, ArrayList<Risorsa> risorseFronteAngoli, Risorsa risorsaRetro, int puntiAttribuiti, ArrayList<Risorsa> requisitiRisorse) {
-        super(angoliFronteDisponibili, risorseFronteAngoli, risorsaRetro);
+
+    public CartaOro(ArrayList<Risorsa> risorseFronteAngoli, ArrayList<Boolean> angoliFronteDisponibili, ArrayList<Boolean> angoliRetroDisponibili, Risorsa risorsaRetro, int puntiAttribuiti, ArrayList<Risorsa> requisitiRisorse) {
+        super(risorseFronteAngoli, angoliFronteDisponibili, angoliRetroDisponibili, risorsaRetro);
         this.puntiAttribuiti = puntiAttribuiti;
         this.requisitiRisorse = requisitiRisorse;
     }
