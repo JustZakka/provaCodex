@@ -28,4 +28,5 @@ public class Tavolo {
     public Slot[][] getSlots() {
         return slots;
     }
+
 }

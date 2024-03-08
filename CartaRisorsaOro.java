@@ -5,8 +5,8 @@ public abstract class CartaRisorsaOro extends CartaNonObiettivo{
 
     private Risorsa risorsaRetroCentro;
 
-    public CartaRisorsaOro(ArrayList<Risorsa> risorseFronteAngoli, ArrayList<Boolean> angoliFronteDisponibili, ArrayList<Boolean> angoliRetroDisponibili, Risorsa risorsaRetro) {
-        super(risorseFronteAngoli, angoliFronteDisponibili, angoliRetroDisponibili);
+    public CartaRisorsaOro(ArrayList<Risorsa> risorseFronteAngoli, int[] angoliFronteDisponibili, Risorsa risorsaRetro) {
+        super(risorseFronteAngoli, angoliFronteDisponibili, new int[]{1, 1, 1, 1});
         this.risorsaRetroCentro = risorsaRetro;
     }
 }

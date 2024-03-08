@@ -6,12 +6,4 @@ public class Risorsa {
         this.tipoRisorsa = tipoRisorsa;
     }
 
-    //SETTER
-    public void setTipoRisorsa(String tipoRisorsa) {
-        this.tipoRisorsa = tipoRisorsa;
-    }
-    //GETTER
-    public String getTipoRisorsa() {
-        return tipoRisorsa;
-    }
 }

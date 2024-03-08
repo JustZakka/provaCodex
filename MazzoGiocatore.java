@@ -13,4 +13,20 @@ public class MazzoGiocatore {
         this.cartaOro = cartaOro;
         this.cartaIniziale = cartaIniziale;
     }
+
+    public CartaRisorsa getCartaRisorsa1() {
+        return cartaRisorsa1;
+    }
+
+    public CartaRisorsa getCartaRisorsa2() {
+        return cartaRisorsa2;
+    }
+
+    public CartaOro getCartaOro() {
+        return cartaOro;
+    }
+
+    public CartaIniziale getCartaIniziale() {
+        return cartaIniziale;
+    }
 }
