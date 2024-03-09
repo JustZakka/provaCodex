@@ -1,4 +1,4 @@
-public class Vegetale extends Risorsa{
+public class Vegetale extends Risorsa {
 
     public Vegetale() {
         super("Vegetale");

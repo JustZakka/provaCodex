@@ -24,23 +24,44 @@ public abstract class CartaNonObiettivo {
                 '}';
     }
 
+    /**
+     * Printa a console gli angoli frontali della carta con [0] se non è disponibile e [1] se disponibile
+     */
     public void printAngoliFronte() {
         System.out.println("[" + angoliFronteDisponibili[3] + "][" + angoliFronteDisponibili[0] + "]");
         System.out.println("[" + angoliFronteDisponibili[2] + "][" + angoliFronteDisponibili[1] + "]");
     }
+
+    /**
+     * Printa a console gli angoli posteriori della carta con [0] se non è disponibile e [1] se disponibile
+     */
     public void printAngoliRetro() {
         System.out.println("[" + angoliRetroDisponibili[3] + "][" + angoliRetroDisponibili[0] + "]");
         System.out.println("[" + angoliRetroDisponibili[2] + "][" + angoliRetroDisponibili[1] + "]");
     }
 
+    /**
+     * Ritorna 1 se la carta è piazzata frontalmente sul tavolo, 0 altrimenti
+     * @return
+     */
     public int getPiazzataInFronte() {
         return piazzataInFronte;
     }
 
+    /**
+     * Ritorna un array di dimensinoe 4 rappresentanti le disponibilità degli angoli frontali, a partire da quello in alto
+     * a destra in senso orario
+     * @return
+     */
     public int[] getAngoliFronteDisponibili() {
         return angoliFronteDisponibili;
     }
 
+    /**
+     * Ritorna un array di dimensinoe 4 rappresentanti le disponibilità degli angoli posteriori, a partire da quello in alto
+     * a destra in senso orario
+     * @return
+     */
     public int[] getAngoliRetroDisponibili() {
         return angoliRetroDisponibili;
     }

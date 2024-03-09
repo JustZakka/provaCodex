@@ -53,34 +53,46 @@ public class Giocatore {
     }
 
 
-    public void piazzaCarta(int rCartaPiazzata, int cCartaPiazzata, CartaNonObiettivo cartaDaPiazzare, int fronte, int angoloPiazzato) {
+    public void piazzaCarta(int rCartaPiazzata, int cCartaPiazzata, CartaNonObiettivo cartaDaPiazzare, int fronte, int angoloCartaPiazzata) {
 
         CartaNonObiettivo cartaPiazzata = tavoloGiocatore.getSlots()[rCartaPiazzata][cCartaPiazzata].getCartaSlot();
         if (!checkCartaInMazzo(cartaDaPiazzare)) return;
-        if (checkAngoloDisponibile(cartaPiazzata, cartaPiazzata.getPiazzataInFronte(), angoloPiazzato)) {
-            int offSetR = calcolaOffSetR(angoloPiazzato);
-            int offSetC = calcolaOffSetC(angoloPiazzato);
+        if (checkAngoloDisponibile(cartaPiazzata, cartaPiazzata.getPiazzataInFronte(), angoloCartaPiazzata)) {
+            int offSetR = calcolaOffSetR(angoloCartaPiazzata);
+            int offSetC = calcolaOffSetC(angoloCartaPiazzata);
             int rCartaDaPiazzare = rCartaPiazzata + offSetR;
             int cCartaDaPiazzare = cCartaPiazzata + offSetC;
-            int angoloOccupatoCartaDaPiazzare = trovaAngoloDaPiazzare(angoloPiazzato);
+            int angoloOccupatoCartaDaPiazzare = trovaAngoloDaPiazzare(angoloCartaPiazzata);
             tavoloGiocatore.getSlots()[rCartaDaPiazzare][cCartaDaPiazzare].setCartaSlot(cartaDaPiazzare);
             tavoloGiocatore.getSlots()[rCartaDaPiazzare][cCartaDaPiazzare].setSlotOccupato(1);
             cartaDaPiazzare.setPiazzataInFronte(fronte);
-            if (cartaPiazzata.getPiazzataInFronte() == 1) {
-                cartaPiazzata.getAngoliFronteDisponibili()[angoloPiazzato] = 0;
-            } else {
-                cartaPiazzata.getAngoliRetroDisponibili()[angoloPiazzato] = 0;
-            }
-            if (fronte == 1) {
-                cartaDaPiazzare.getAngoliFronteDisponibili()[angoloOccupatoCartaDaPiazzare] = 0;
-            } else {
-                cartaDaPiazzare.getAngoliRetroDisponibili()[angoloOccupatoCartaDaPiazzare] = 0;
-            }
+            updateAngolo(cartaPiazzata, angoloCartaPiazzata);
+            updateAngolo(cartaDaPiazzare, angoloOccupatoCartaDaPiazzare);
             mazzoGiocatore.getCarte().remove(cartaDaPiazzare);
             System.out.println("Carta " + cartaDaPiazzare.getClass() + " piazzata nello slot [" + rCartaDaPiazzare + "][" + cCartaDaPiazzare + "]." );
         }
     }
 
+    /**
+     * Aggiorna lo stato di un angolo. Per esempio se viene piazzato una carta A sopra l'angolo in alto a destra di una carta B,
+     * l'angolo in alto a destra di B verrà aggiornato a 0 mentre l'angolo in basso a sinistra della carta A verra aggiornato a 0
+     * @param carta
+     * @param angolo
+     */
+    private void updateAngolo(CartaNonObiettivo carta, int angolo) {
+        if (carta.getPiazzataInFronte() == 1) {
+            carta.getAngoliFronteDisponibili()[angolo] = 0;
+        } else {
+            carta.getAngoliRetroDisponibili()[angolo] = 0;
+        }
+    }
+
+    /**
+     * Data una carta A nel tavolo, voglio piazzare una carta B sopra di essa. Allora l'angolo che verrà aggiornato dell'angolo B sarà
+     * uguale all'indice dell'angolo occupato di A sommato a 2
+     * @param angoloPiazzato
+     * @return
+     */
     public int trovaAngoloDaPiazzare(int angoloPiazzato) {
         return switch (angoloPiazzato) {
             case 0 -> 2;
@@ -91,6 +103,11 @@ public class Giocatore {
         };
     }
 
+    /**
+     * Calcola la riga dove sarà piazzata la nuova carta in base alla posizione della carta già sul tavolo
+     * @param angolo
+     * @return
+     */
     private int calcolaOffSetR(int angolo) {
         int offSetR = 0;
         switch (angolo) {
@@ -109,6 +126,12 @@ public class Giocatore {
         }
         return offSetR;
     }
+
+    /**
+     * Calcola la colonna dove sarà piazzata la nuova carta in base alla posizione della carta già sul tavolo
+     * @param angolo
+     * @return
+     */
     private int calcolaOffSetC(int angolo) {
         int offSetC = 0;
         switch (angolo) {
@@ -128,10 +151,16 @@ public class Giocatore {
         return offSetC;
     }
 
+    /**
+     * Printa su riga di comando la situazione del tavolo dove [0] indica uno slot non occupato, [1] altrimenti
+     */
     public void analisiTavolo() {
         tavoloGiocatore.printTavolo();
     }
 
+    /**
+     * Printa su riga di comando lo stato del mazzo del giocatore
+     */
     public void displayMazzo() {
         for (int i = 1; i <= mazzoGiocatore.getCarte().size(); i++) {
             System.out.println(i + ") " + mazzoGiocatore.getCarte().get(i-1).getClass());
