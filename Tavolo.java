@@ -38,7 +38,14 @@ public class Tavolo {
             System.out.println("ERORRE: SLOT NON OCCUPATO DA NESSUNA CARTA.");
             return;
         }
-        System.out.println(slots[r][c].getCartaSlot().toString());
+        CartaNonObiettivo carta = slots[r][c].getCartaSlot();
+        System.out.println("Analisi della carta nello slot [" + r + "][" + c + "].");
+        System.out.println(carta.getClass());
+        if (carta.getPiazzataInFronte() == 1) {
+            carta.printAngoliFronte();
+        } else {
+            carta.printAngoliRetro();
+        }
     }
 
     public Slot[][] getSlots() {
