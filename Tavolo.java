@@ -25,6 +25,14 @@ public class Tavolo {
         }
     }
 
+    public void analisiCartaTavolo(int r, int c) {
+        if (slots[r][c].getSlotOccupato() == 0) {
+            System.out.println("ERORRE: SLOT NON OCCUPATO DA NESSUNA CARTA.");
+            return;
+        }
+        System.out.println(slots[r][c].getCartaSlot().toString());
+    }
+
     public Slot[][] getSlots() {
         return slots;
     }

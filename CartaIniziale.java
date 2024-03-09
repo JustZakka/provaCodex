@@ -10,4 +10,12 @@ public class CartaIniziale extends CartaNonObiettivo{
         this.risorseRetroAngoli = risorseRetroAngoli;
         this.risorseRetroCentro = risorseRetroCentro;
     }
+
+    @Override
+    public String toString() {
+        return "CartaIniziale{" +
+                "risorseRetroAngoli=" + risorseRetroAngoli +
+                ", risorseRetroCentro=" + risorseRetroCentro +
+                '}';
+    }
 }

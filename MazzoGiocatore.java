@@ -2,28 +2,20 @@ import java.util.ArrayList;
 
 public class MazzoGiocatore {
 
-    private CartaRisorsa cartaRisorsa1;
-    private CartaRisorsa cartaRisorsa2;
-    private CartaOro cartaOro;
+    private ArrayList<CartaNonObiettivo> carte;
     private CartaIniziale cartaIniziale;
 
-    public MazzoGiocatore(CartaRisorsa cartaRisorsa1, CartaRisorsa cartaRisorsa2, CartaOro cartaOro, CartaIniziale cartaIniziale) {
-        this.cartaRisorsa1 = cartaRisorsa1;
-        this.cartaRisorsa2 = cartaRisorsa2;
-        this.cartaOro = cartaOro;
+    public MazzoGiocatore(ArrayList<CartaNonObiettivo> carte, CartaIniziale cartaIniziale) {
+        this.carte = carte;
         this.cartaIniziale = cartaIniziale;
     }
 
-    public CartaRisorsa getCartaRisorsa1() {
-        return cartaRisorsa1;
+    public void setCartaIniziale(CartaIniziale cartaIniziale) {
+        this.cartaIniziale = cartaIniziale;
     }
 
-    public CartaRisorsa getCartaRisorsa2() {
-        return cartaRisorsa2;
-    }
-
-    public CartaOro getCartaOro() {
-        return cartaOro;
+    public ArrayList<CartaNonObiettivo> getCarte() {
+        return carte;
     }
 
     public CartaIniziale getCartaIniziale() {
