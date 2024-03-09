@@ -30,8 +30,8 @@ public class Tavolo {
 
     /**
      * Dati la riga r e la colonna c, controlla se lo slot [r][c] è occupato, in caso printa la toString() della carta occupante
-     * @param r
-     * @param c
+     * @param r riga dello slot
+     * @param c colonna dello slot
      */
     public void analisiCartaTavolo(int r, int c) {
         if (slots[r][c].getSlotOccupato() == 0) {

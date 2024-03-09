@@ -6,10 +6,10 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        int sceltaCarta = 0;
-        int sceltaFronte = 0;
-        int sceltaContinua= 0;
-        int sceltaAngolo = 0;
+        int sceltaCarta;
+        int sceltaFronte;
+        int sceltaContinua;
+        int sceltaAngolo;
         int riga, colonna;
         MazzoGiocatore mazzo = new MazzoGiocatore(new ArrayList<>(Arrays.asList(new CartaRisorsaVegetale1(), new CartaRisorsaVegetale2(), new CartaOroFunghi1())), new CartaIniziale1());
         Giocatore p1 = new Giocatore(new SegnalinoRosso1(), mazzo, true, new Tavolo(5, 5));
