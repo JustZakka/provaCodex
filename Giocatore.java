@@ -12,9 +12,12 @@ public class Giocatore {
         this.tavoloGiocatore = tavoloGiocatore;
     }
 
-    public Giocatore(Tavolo tavoloGiocatore) {
-        this.tavoloGiocatore = tavoloGiocatore;
-    }
+    /**
+     * Ritorna true se lo Slot è occupato, false altrimenti
+     * @param r riga dello Slot
+     * @param c colonna dello Slot
+     * @return
+     */
     private boolean checkSlotOccupato(int r, int c) {
         boolean flag;
         if (tavoloGiocatore.getSlots()[r][c].getSlotOccupato() == 1) {
@@ -25,6 +28,12 @@ public class Giocatore {
         }
         return flag;
     }
+
+    /**
+     * Ritorna true se la carta è nel mazzo del giocatore, false altrimenti
+     * @param carta
+     * @return
+     */
     private boolean checkCartaInMazzo(CartaNonObiettivo carta) {
         boolean flag;
         if (!mazzoGiocatore.getCarte().contains(carta)) {
@@ -35,6 +44,14 @@ public class Giocatore {
         }
         return flag;
     }
+
+    /**
+     * Ritorna true se l'angolo della carta è disponibile, false altrimenti
+     * @param carta
+     * @param fronte
+     * @param angolo
+     * @return
+     */
     private boolean checkAngoloDisponibile(CartaNonObiettivo carta, int fronte, int angolo) {
         boolean flag;
         if (fronte == 1) {
@@ -44,6 +61,14 @@ public class Giocatore {
         }
         return flag;
     }
+
+    /**
+     * Piazza la carta iniziale sul tavolo
+     * @param carta
+     * @param r
+     * @param c
+     * @param fronte
+     */
     public void piazzaCartaIniziale(CartaIniziale carta, int r, int c, int fronte) {
         carta.setPiazzataInFronte(fronte);
         tavoloGiocatore.getSlots()[r][c].setSlotOccupato(1);
@@ -52,9 +77,15 @@ public class Giocatore {
         System.out.println("Carta " + carta.getClass() + " piazzata nello slot [" + r + "][" + c + "]." );
     }
 
-
+    /**
+     * Sia A una carta già piazzata sul tavolo, si vuole piazzare sopra di essa una carta B.
+     * @param rCartaPiazzata riga della carta A
+     * @param cCartaPiazzata colonna della carta B
+     * @param cartaDaPiazzare carta B
+     * @param fronte indica come sarà piazzata B, 1 è fronte 0 retro
+     * @param angoloCartaPiazzata indica l'angolo della carta A dove verrà piazzata B
+     */
     public void piazzaCarta(int rCartaPiazzata, int cCartaPiazzata, CartaNonObiettivo cartaDaPiazzare, int fronte, int angoloCartaPiazzata) {
-
         CartaNonObiettivo cartaPiazzata = tavoloGiocatore.getSlots()[rCartaPiazzata][cCartaPiazzata].getCartaSlot();
         if (!checkCartaInMazzo(cartaDaPiazzare)) return;
         if (checkAngoloDisponibile(cartaPiazzata, cartaPiazzata.getPiazzataInFronte(), angoloCartaPiazzata)) {
@@ -63,11 +94,14 @@ public class Giocatore {
             int rCartaDaPiazzare = rCartaPiazzata + offSetR;
             int cCartaDaPiazzare = cCartaPiazzata + offSetC;
             int angoloOccupatoCartaDaPiazzare = trovaAngoloDaPiazzare(angoloCartaPiazzata);
+
             tavoloGiocatore.getSlots()[rCartaDaPiazzare][cCartaDaPiazzare].setCartaSlot(cartaDaPiazzare);
             tavoloGiocatore.getSlots()[rCartaDaPiazzare][cCartaDaPiazzare].setSlotOccupato(1);
             cartaDaPiazzare.setPiazzataInFronte(fronte);
+
             updateAngolo(cartaPiazzata, angoloCartaPiazzata);
             updateAngolo(cartaDaPiazzare, angoloOccupatoCartaDaPiazzare);
+
             mazzoGiocatore.getCarte().remove(cartaDaPiazzare);
             System.out.println("Carta " + cartaDaPiazzare.getClass() + " piazzata nello slot [" + rCartaDaPiazzare + "][" + cCartaDaPiazzare + "]." );
         }
