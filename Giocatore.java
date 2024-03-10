@@ -14,55 +14,6 @@ public class Giocatore {
         this.tavoloGiocatore = tavoloGiocatore;
     }
 
-    /**
-     * Ritorna true se lo Slot è occupato, false altrimenti
-     * @param r riga dello Slot
-     * @param c colonna dello Slot
-     * @return
-     */
-    private boolean checkSlotOccupato(int r, int c) {
-        boolean flag;
-        if (tavoloGiocatore.getSlots()[r][c].getSlotOccupato() == 1) {
-            System.out.println("ERRORE: SLOT GIA' OCCUPATO");
-            flag = true;
-        } else {
-            flag = false;
-        }
-        return flag;
-    }
-
-    /**
-     * Ritorna true se la carta è nel mazzo del giocatore, false altrimenti
-     * @param carta
-     * @return
-     */
-    private boolean checkCartaInMazzo(CartaNonObiettivo carta) {
-        boolean flag;
-        if (!mazzoGiocatore.getCarte().contains(carta)) {
-            System.out.println("ERRORE: CARTA NON DISPONIBILE NEL MAZZO");
-            flag = false;
-        } else {
-            flag = true;
-        }
-        return flag;
-    }
-
-    /**
-     * Ritorna true se l'angolo della carta è disponibile, false altrimenti
-     * @param carta
-     * @param fronte
-     * @param angolo
-     * @return
-     */
-    private boolean checkAngoloDisponibile(CartaNonObiettivo carta, int fronte, int angolo) {
-        boolean flag;
-        if (fronte == 1) {
-            flag = carta.getAngoliFronteDisponibili()[angolo] == 1;
-        } else {
-            flag = carta.getAngoliRetroDisponibili()[angolo] == 1;
-        }
-        return flag;
-    }
 
     /**
      * Piazza la carta Iniziale al centro del tavolo del Giocatore
@@ -111,6 +62,74 @@ public class Giocatore {
 
     public void pescaCarta() {
 
+    }
+
+
+    /**
+     * Printa su riga di comando la situazione del tavolo dove [0] indica uno slot non occupato, [1] altrimenti
+     */
+    public void analisiTavolo() {
+        tavoloGiocatore.printTavolo();
+    }
+
+    /**
+     * Printa su riga di comando lo stato del mazzo del giocatore
+     */
+    public void displayMazzo() {
+        for (int i = 1; i <= mazzoGiocatore.getCarte().size(); i++) {
+            System.out.println(i + ") " + mazzoGiocatore.getCarte().get(i-1).getClass());
+        }
+    }
+
+
+    /**
+     * Ritorna true se lo Slot è occupato, false altrimenti
+     * @param r riga dello Slot
+     * @param c colonna dello Slot
+     * @return
+     */
+    private boolean checkSlotOccupato(int r, int c) {
+        boolean flag;
+        if (tavoloGiocatore.getSlots()[r][c].getSlotOccupato() == 1) {
+            System.out.println("ERRORE: SLOT GIA' OCCUPATO");
+            flag = true;
+        } else {
+            flag = false;
+        }
+        return flag;
+    }
+
+    /**
+     * Ritorna true se la carta è nel mazzo del giocatore, false altrimenti
+     * @param carta
+     * @return
+     */
+    private boolean checkCartaInMazzo(CartaNonObiettivo carta) {
+        boolean flag;
+        if (!mazzoGiocatore.getCarte().contains(carta)) {
+            System.out.println("ERRORE: CARTA NON DISPONIBILE NEL MAZZO");
+            flag = false;
+        } else {
+            flag = true;
+        }
+        return flag;
+    }
+
+    /**
+     * Ritorna true se l'angolo della carta è disponibile, false altrimenti
+     * @param carta
+     * @param fronte
+     * @param angolo
+     * @return
+     */
+    private boolean checkAngoloDisponibile(CartaNonObiettivo carta, int fronte, int angolo) {
+        boolean flag;
+        if (fronte == 1) {
+            flag = carta.getAngoliFronteDisponibili()[angolo] == 1;
+        } else {
+            flag = carta.getAngoliRetroDisponibili()[angolo] == 1;
+        }
+        return flag;
     }
 
     /**
@@ -191,21 +210,6 @@ public class Giocatore {
         return offSetC;
     }
 
-    /**
-     * Printa su riga di comando la situazione del tavolo dove [0] indica uno slot non occupato, [1] altrimenti
-     */
-    public void analisiTavolo() {
-        tavoloGiocatore.printTavolo();
-    }
-
-    /**
-     * Printa su riga di comando lo stato del mazzo del giocatore
-     */
-    public void displayMazzo() {
-        for (int i = 1; i <= mazzoGiocatore.getCarte().size(); i++) {
-            System.out.println(i + ") " + mazzoGiocatore.getCarte().get(i-1).getClass());
-        }
-    }
 
     public void setFirstPlayer(boolean firstPlayer) {
         this.firstPlayer = firstPlayer;
