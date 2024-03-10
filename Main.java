@@ -12,7 +12,7 @@ public class Main {
         int sceltaAngolo;
         int riga, colonna;
         MazzoGiocatore mazzo = new MazzoGiocatore(new ArrayList<>(Arrays.asList(new CartaRisorsaVegetale1(), new CartaRisorsaVegetale2(), new CartaOroFunghi1())), new CartaIniziale1());
-        Giocatore p1 = new Giocatore(new SegnalinoRosso1(), mazzo, true, new Tavolo(5, 5));
+        Giocatore p1 = new Giocatore(new SegnalinoRosso1(), mazzo, true, new Tavolo(7, 7));
 
         System.out.println(":::Mazzo di p1:::");
         p1.displayMazzo();

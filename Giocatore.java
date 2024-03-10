@@ -107,6 +107,10 @@ public class Giocatore {
         }
     }
 
+    public void pescaCarta() {
+
+    }
+
     /**
      * Aggiorna lo stato di un angolo. Per esempio se viene piazzato una carta A sopra l'angolo in alto a destra di una carta B,
      * l'angolo in alto a destra di B verrà aggiornato a 0 mentre l'angolo in basso a sinistra della carta A verra aggiornato a 0
@@ -127,7 +131,7 @@ public class Giocatore {
      * @param angoloPiazzato
      * @return
      */
-    public int trovaAngoloDaPiazzare(int angoloPiazzato) {
+    private int trovaAngoloDaPiazzare(int angoloPiazzato) {
         return switch (angoloPiazzato) {
             case 0 -> 2;
             case 1 -> 3;
