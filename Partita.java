@@ -17,6 +17,17 @@ public class Partita {
         this.mazzoIniziale = mazzoIniziale;
     }
 
+    /**
+     * Sceglie casualmente l'indice (0-index) del giocatore che inizia la partita e che quindi avrà il "Segnalino Nero"
+     * @return
+     */
+    private int randomIndex() {
+        Random random = new Random();
+        int giocatoreIniziale = random.nextInt(giocatori.size());
+        return giocatoreIniziale;
+    }
+
+
     public void iniziaPartita() {
         /*Elementi necessari per le scelte fatte dai giocatori e per
         * prendere i comandi da riga di comando*/
@@ -30,7 +41,7 @@ public class Partita {
         int flagCartaGiocata = 0;
 
         /*Si inizia scegliendo in modo casuale il giocatore iniziale*/
-        int indiceGiocatoreInGioco = scegliGiocatoreIniziale();
+        int indiceGiocatoreInGioco = randomIndex();
         Giocatore giocatoreInGioco = giocatori.get(indiceGiocatoreInGioco);
         giocatoreInGioco.setFirstPlayer(true);
         System.out.println(giocatoreInGioco.getNomeGiocatore() + " è il primo a giocare!");
@@ -52,10 +63,12 @@ public class Partita {
         while (true) {
 
             while (sceltaFinisciTurno != -1) {
+
                 if (sceltaGiocatore == 1) {
                     /*Cambio il flag della carta giocata per evitare che il giocatore ne piazzi un'altra nello
-                    * stesso turno di gioco*/
+                     * stesso turno di gioco*/
                     flagCartaGiocata = 1;
+
                     /*Il giocatore sceglie quale carta piazzare e come piazzarla*/
                     System.out.println(":::Mazzo di " + giocatoreInGioco.getNomeGiocatore() + ":::");
                     giocatoreInGioco.displayMazzo();
@@ -90,13 +103,43 @@ public class Partita {
                     giocatoreInGioco.piazzaCarta(riga, colonna, giocatoreInGioco.getMazzoGiocatore().getCarte().get(sceltaCarta-1), sceltaFronte, sceltaAngolo);
                     /*Display del tavolo per controllare*/
                     giocatoreInGioco.getTavoloGiocatore().printTavolo();
+
+                    /*Il giocatore ora deve pescare una carta dai due mazzi risorsa o oro*/
+                    //TODO: finire la funzione della pesca
+                    System.out.println("Pesca una carta dai mazzi:");
+                    System.out.println("1) Mazzo Risorsa");
+                    System.out.println("2) Mazzo Oro");
+                    sceltaGiocatore = scanner.nextInt();
+
+                    //TODO: controllare che i mazzi abbiano ancora carte da pescare
+                    if (sceltaGiocatore == 1) {
+                        /*Il giocatore aggiunge la carta in cima al mazzo risorsa al suo mazzo*/
+                        giocatoreInGioco.getMazzoGiocatore().getCarte().add(
+                                mazzoRisorsa.getCarteRisorsa().getFirst()
+                        );
+                        /*Tolgo dal mazzo risorsa la prima carta pescata*/
+                        mazzoRisorsa.getCarteRisorsa().removeFirst();
+
+                    } else if (sceltaGiocatore == 2) {
+                        /*Il giocatore aggiunge la carta in cima al mazzo risorsa al suo mazzo*/
+                        giocatoreInGioco.getMazzoGiocatore().getCarte().add(
+                                mazzoOro.getCarteOro().getFirst()
+                        );
+                        /*Tolgo dal mazzo risorsa la prima carta pescata*/
+                        mazzoOro.getCarteOro().removeFirst();
+
+                    }
+
                 } else if (sceltaGiocatore == 2) {
+
+                    /*Il giocatore sceglie una carta dando come input la sua riga e colonna*/
                     giocatoreInGioco.analisiTavolo();
                     System.out.println("Scegli la riga della carta che vuoi analizzare: ");
                     riga = scanner.nextInt();
                     System.out.println("Scegli la colonna della carta che vuoi analizzare: ");
                     colonna = scanner.nextInt();
                     giocatoreInGioco.getTavoloGiocatore().analisiCartaTavolo(riga, colonna);
+
                 }
 
                 System.out.println("Cosa vuoi fare ?");
@@ -123,14 +166,6 @@ public class Partita {
         }
 
     }
-    /**
-     * Sceglie casualmente l'indice (0-index) del giocatore che inizia la partita e che quindi avrà il "Segnalino Nero"
-     * @return
-     */
-    public int scegliGiocatoreIniziale() {
-        Random random = new Random();
-        int giocatoreIniziale = random.nextInt(giocatori.size());
-        return giocatoreIniziale;
-    }
+
 
 }
