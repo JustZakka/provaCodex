@@ -16,19 +16,6 @@ public class Tavolo {
     }
 
     /**
-     * Printa su riga di comando il tavolo dove [0] indica uno slot libero, [1] altrimenti
-     */
-    public void printTavolo() {
-        System.out.println("-------------------------");
-        for (int i = 0; i < r; i++) {
-            for (int j = 0; j < c; j++) {
-                System.out.print("[" + slots[i][j].getSlotOccupato() + "]");
-            }
-            System.out.println();
-        }
-    }
-
-    /**
      * Dati la riga r e la colonna c, controlla se lo slot [r][c] è occupato, in caso printa la toString() della carta occupante
      * @param r riga dello slot
      * @param c colonna dello slot
@@ -52,4 +39,11 @@ public class Tavolo {
         return slots;
     }
 
+    public int getR() {
+        return r;
+    }
+
+    public int getC() {
+        return c;
+    }
 }

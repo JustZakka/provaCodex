@@ -70,17 +70,29 @@ public class Giocatore {
     /**
      * Printa su riga di comando la situazione del tavolo dove [0] indica uno slot non occupato, [1] altrimenti
      */
-    public void analisiTavolo() {
-        tavoloGiocatore.printTavolo();
+    public void printTavolo() {
+        System.out.println("-------------------------");
+        for (int i = 0; i < tavoloGiocatore.getR(); i++) {
+            for (int j = 0; j < tavoloGiocatore.getC(); j++) {
+                System.out.print("[" + tavoloGiocatore.getSlots()[i][j].getSlotOccupato() + "]");
+            }
+            System.out.println();
+        }
     }
 
     /**
      * Printa su riga di comando lo stato del mazzo del giocatore
      */
-    public void displayMazzo() {
+    public void printMazzo() {
+        System.out.println(":::Mazzo di " + nomeGiocatore + ":::");
         for (int i = 1; i <= mazzoGiocatore.getCarte().size(); i++) {
             System.out.println(i + ") " + mazzoGiocatore.getCarte().get(i-1).getClass());
         }
+    }
+
+    public void printCartaIniziale() {
+        System.out.println("Carta iniziale di " + nomeGiocatore);
+        System.out.println(mazzoGiocatore.getCartaIniziale().toString());
     }
 
 
