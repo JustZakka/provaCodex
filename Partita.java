@@ -23,13 +23,15 @@ public class Partita {
         Scanner scanner = new Scanner(System.in);
         int sceltaCarta;
         int sceltaFronte;
-        int sceltaContinua = 0;
+        int sceltaGiocatore;
+        int sceltaFinisciTurno = 0;
         int sceltaAngolo;
         int riga, colonna;
+        int flagCartaGiocata = 0;
 
         /*Si inizia scegliendo in modo casuale il giocatore iniziale*/
-        int indiceGiocatoreIniziale = scegliGiocatoreIniziale();
-        Giocatore giocatoreInGioco = giocatori.get(indiceGiocatoreIniziale);
+        int indiceGiocatoreInGioco = scegliGiocatoreIniziale();
+        Giocatore giocatoreInGioco = giocatori.get(indiceGiocatoreInGioco);
         giocatoreInGioco.setFirstPlayer(true);
         System.out.println(giocatoreInGioco.getNomeGiocatore() + " è il primo a giocare!");
 
@@ -42,67 +44,85 @@ public class Partita {
         giocatoreInGioco.piazzaCartaIniziale(sceltaFronte);
         giocatoreInGioco.getTavoloGiocatore().printTavolo();
 
-        do {
-            /*Il giocatore sceglie cosa fare*/
+        System.out.println("Cosa vuoi fare ?");
+        System.out.println("1) Piazza una Carta");
+        System.out.println("2) Analizza il tavolo");
+        sceltaGiocatore = scanner.nextInt();
+
+        while (true) {
+
+            while (sceltaFinisciTurno != -1) {
+                if (sceltaGiocatore == 1) {
+                    /*Cambio il flag della carta giocata per evitare che il giocatore ne piazzi un'altra nello
+                    * stesso turno di gioco*/
+                    flagCartaGiocata = 1;
+                    /*Il giocatore sceglie quale carta piazzare e come piazzarla*/
+                    System.out.println(":::Mazzo di " + giocatoreInGioco.getNomeGiocatore() + ":::");
+                    giocatoreInGioco.displayMazzo();
+                    System.out.println("Seleziona il numero della carta che vuoi piazzare: ");
+                    sceltaCarta = scanner.nextInt();
+                    System.out.println("Seleziona se vuoi piazzarla di fronte o retro: 1) -> Fronte | 0) -> Retro");
+                    sceltaFronte = scanner.nextInt();
+                    System.out.println("Seleziona la riga della carta a cui vuoi attaccarti:");
+                    giocatoreInGioco.getTavoloGiocatore().printTavolo();
+                    riga = scanner.nextInt();
+                    System.out.println("Seleziona la colonna della carta a cui vuoi attaccarti:");
+                    colonna = scanner.nextInt();
+
+                    /*Il giocatore vede gli angoli della carta che vuole piazzare*/
+                    System.out.println("Carta da piazzare: ");
+                    if (sceltaFronte == 1) {
+                        giocatoreInGioco.getMazzoGiocatore().getCarte().get(sceltaCarta-1).printAngoliFronte();
+                    } else {
+                        giocatoreInGioco.getMazzoGiocatore().getCarte().get(sceltaCarta-1).printAngoliRetro();
+                    }
+                    /*Il giocatore vede la carta sul tavolo che ha scelto come base*/
+                    System.out.println("Carta selezionata sul tavolo:");
+                    if (giocatoreInGioco.getTavoloGiocatore().getSlots()[riga][colonna].getCartaSlot().getPiazzataInFronte() == 1) {
+                        giocatoreInGioco.getTavoloGiocatore().getSlots()[riga][colonna].getCartaSlot().printAngoliFronte();
+                    } else {
+                        giocatoreInGioco.getTavoloGiocatore().getSlots()[riga][colonna].getCartaSlot().printAngoliRetro();
+                    }
+                    //TODO: METTERE IL CONTROLLO PER EVITARE CHE IL GIOCATORE SCELGA UN ANGOLO NON DISPONIBILE
+                    System.out.println("Seleziona l'angolo della carta sul tavolo a cui vuoi attaccarti (a partire da in alto a dx in senso orario 0->3): ");
+                    sceltaAngolo = scanner.nextInt();
+                    /*La carta scelta dal giocatore viene piazzata in modo opportuna sul tavolo attaccata alla carta selezionata come base*/
+                    giocatoreInGioco.piazzaCarta(riga, colonna, giocatoreInGioco.getMazzoGiocatore().getCarte().get(sceltaCarta-1), sceltaFronte, sceltaAngolo);
+                    /*Display del tavolo per controllare*/
+                    giocatoreInGioco.getTavoloGiocatore().printTavolo();
+                } else if (sceltaGiocatore == 2) {
+                    giocatoreInGioco.analisiTavolo();
+                    System.out.println("Scegli la riga della carta che vuoi analizzare: ");
+                    riga = scanner.nextInt();
+                    System.out.println("Scegli la colonna della carta che vuoi analizzare: ");
+                    colonna = scanner.nextInt();
+                    giocatoreInGioco.getTavoloGiocatore().analisiCartaTavolo(riga, colonna);
+                }
+
+                System.out.println("Cosa vuoi fare ?");
+                /*Il giocatore sceglie cosa fare*/
+                if (flagCartaGiocata == 0) {
+                    System.out.println("1) Piazza una Carta");
+                    System.out.println("2) Analizza il tavolo");
+                } else {
+                    System.out.println("-1) Finisci il turno");
+                    System.out.println("2) Analizza il tavolo");
+                }
+                sceltaFinisciTurno = scanner.nextInt();
+            }
+
+            indiceGiocatoreInGioco++;
+            giocatoreInGioco = giocatori.get(indiceGiocatoreInGioco);
+            System.out.println("Prossimo turno... \n Tocca a " + giocatoreInGioco.getNomeGiocatore());
+
             System.out.println("Cosa vuoi fare ?");
             System.out.println("1) Piazza una Carta");
             System.out.println("2) Analizza il tavolo");
-            sceltaContinua = scanner.nextInt();
+            sceltaGiocatore = scanner.nextInt();
 
-            if (sceltaContinua == 1) {
-                /*Il giocatore sceglie quale carta piazzare e come piazzarla*/
-                System.out.println(":::Mazzo di " + giocatoreInGioco.getNomeGiocatore() + ":::");
-                giocatoreInGioco.displayMazzo();
-                System.out.println("Seleziona il numero della carta che vuoi piazzare: ");
-                sceltaCarta = scanner.nextInt();
-                System.out.println("Seleziona se vuoi piazzarla di fronte o retro: 1) -> Fronte | 0) -> Retro");
-                sceltaFronte = scanner.nextInt();
-                System.out.println("Seleziona la riga della carta a cui vuoi attaccarti:");
-                giocatoreInGioco.getTavoloGiocatore().printTavolo();
-                riga = scanner.nextInt();
-                System.out.println("Seleziona la colonna della carta a cui vuoi attaccarti:");
-                colonna = scanner.nextInt();
-
-                /*Il giocatore vede gli angoli della carta che vuole piazzare*/
-                System.out.println("Carta da piazzare: ");
-                if (sceltaFronte == 1) {
-                    giocatoreInGioco.getMazzoGiocatore().getCarte().get(sceltaCarta-1).printAngoliFronte();
-                } else {
-                    giocatoreInGioco.getMazzoGiocatore().getCarte().get(sceltaCarta-1).printAngoliRetro();
-                }
-                /*Il giocatore vede la carta sul tavolo che ha scelto come base*/
-                System.out.println("Carta selezionata sul tavolo:");
-                if (giocatoreInGioco.getTavoloGiocatore().getSlots()[riga][colonna].getCartaSlot().getPiazzataInFronte() == 1) {
-                    giocatoreInGioco.getTavoloGiocatore().getSlots()[riga][colonna].getCartaSlot().printAngoliFronte();
-                } else {
-                    giocatoreInGioco.getTavoloGiocatore().getSlots()[riga][colonna].getCartaSlot().printAngoliRetro();
-                }
-                //TODO: METTERE IL CONTROLLO PER EVITARE CHE IL GIOCATORE SCELGA UN ANGOLO NON DISPONIBILE
-                System.out.println("Seleziona l'angolo della carta sul tavolo a cui vuoi attaccarti (a partire da in alto a dx in senso orario 0->3): ");
-                sceltaAngolo = scanner.nextInt();
-                /*La carta scelta dal giocatore viene piazzata in modo opportuna sul tavolo attaccata alla carta selezionata come base*/
-                giocatoreInGioco.piazzaCarta(riga, colonna, giocatoreInGioco.getMazzoGiocatore().getCarte().get(sceltaCarta-1), sceltaFronte, sceltaAngolo);
-                /*Display del tavolo per controllare*/
-                giocatoreInGioco.getTavoloGiocatore().printTavolo();
-            } else if (sceltaContinua == 2) {
-                giocatoreInGioco.analisiTavolo();
-                System.out.println("Scegli la riga della carta che vuoi analizzare: ");
-                riga = scanner.nextInt();
-                System.out.println("Scegli la colonna della carta che vuoi analizzare: ");
-                colonna = scanner.nextInt();
-                giocatoreInGioco.getTavoloGiocatore().analisiCartaTavolo(riga, colonna);
-            }
-
-            System.out.println("Cosa vuoi fare ?");
-            System.out.println("-1: Chiudi il gioco");
-            System.out.println("1: Vai avanti col gioco");
-            sceltaContinua = scanner.nextInt();
-        } while (sceltaContinua != -1);
-
-
+        }
 
     }
-
     /**
      * Sceglie casualmente l'indice (0-index) del giocatore che inizia la partita e che quindi avrà il "Segnalino Nero"
      * @return

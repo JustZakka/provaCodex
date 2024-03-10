@@ -61,7 +61,9 @@ public class Giocatore {
     }
 
     public void pescaCarta() {
-
+        System.out.println("Che carta vuoi pescare ?");
+        System.out.println("1) Risorsa");
+        System.out.println("2) Oro");
     }
 
 
