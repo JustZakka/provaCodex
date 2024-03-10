@@ -12,18 +12,14 @@ public class Main {
         int sceltaAngolo;
         int riga, colonna;
         MazzoGiocatore mazzo = new MazzoGiocatore(new ArrayList<>(Arrays.asList(new CartaRisorsaVegetale1(), new CartaRisorsaVegetale2(), new CartaOroFunghi1())), new CartaIniziale1());
-        Giocatore p1 = new Giocatore(new SegnalinoRosso1(), mazzo, true, new Tavolo(7, 7));
+        Giocatore p1 = new Giocatore("Giorgio", new SegnalinoRosso1(), mazzo, new Tavolo(7, 7));
 
         System.out.println(":::Mazzo di p1:::");
         p1.displayMazzo();
         System.out.println("Piazza la carta iniziale...");
         System.out.println("Seleziona se vuoi piazzare la carta iniziale di fronte o retro: 1) -> Fronte | 0) -> Retro");
         sceltaFronte = scanner.nextInt();
-        System.out.println("Carta iniziale posizionata di " + (sceltaFronte == 1 ? "Fronte" : "Retro") + ". Scegli in che riga piazzarla: ");
-        riga = scanner.nextInt();
-        System.out.println("Scegli in che colonna piazzarla: ");
-        colonna = scanner.nextInt();
-        p1.piazzaCartaIniziale(p1.getMazzoGiocatore().getCartaIniziale(), riga, colonna, sceltaFronte);
+        p1.piazzaCartaIniziale(sceltaFronte);
         p1.getTavoloGiocatore().printTavolo();
 
         System.out.println("Vuoi continuare ?");

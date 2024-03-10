@@ -1,14 +1,16 @@
 public class Giocatore {
 
+    private String nomeGiocatore;
     private Segnalino segnalino;
     private MazzoGiocatore mazzoGiocatore;
     private boolean firstPlayer;
     private Tavolo tavoloGiocatore;
 
-    public Giocatore(Segnalino segnalino, MazzoGiocatore mazzoGiocatore, boolean firstPlayer, Tavolo tavoloGiocatore) {
+    public Giocatore(String nomeGiocatore, Segnalino segnalino, MazzoGiocatore mazzoGiocatore,Tavolo tavoloGiocatore) {
+        this.nomeGiocatore = nomeGiocatore;
         this.segnalino = segnalino;
         this.mazzoGiocatore = mazzoGiocatore;
-        this.firstPlayer = firstPlayer;
+        this.firstPlayer = false;
         this.tavoloGiocatore = tavoloGiocatore;
     }
 
@@ -63,13 +65,13 @@ public class Giocatore {
     }
 
     /**
-     * Piazza la carta iniziale sul tavolo
-     * @param carta
-     * @param r
-     * @param c
+     * Piazza la carta Iniziale al centro del tavolo del Giocatore
      * @param fronte
      */
-    public void piazzaCartaIniziale(CartaIniziale carta, int r, int c, int fronte) {
+    public void piazzaCartaIniziale(int fronte) {
+        int r, c;
+        r = c = tavoloGiocatore.getSlots().length / 2;
+        CartaIniziale carta = mazzoGiocatore.getCartaIniziale();
         carta.setPiazzataInFronte(fronte);
         tavoloGiocatore.getSlots()[r][c].setSlotOccupato(1);
         tavoloGiocatore.getSlots()[r][c].setCartaSlot(carta);
@@ -203,6 +205,14 @@ public class Giocatore {
         for (int i = 1; i <= mazzoGiocatore.getCarte().size(); i++) {
             System.out.println(i + ") " + mazzoGiocatore.getCarte().get(i-1).getClass());
         }
+    }
+
+    public void setFirstPlayer(boolean firstPlayer) {
+        this.firstPlayer = firstPlayer;
+    }
+
+    public String getNomeGiocatore() {
+        return nomeGiocatore;
     }
 
     public MazzoGiocatore getMazzoGiocatore() {

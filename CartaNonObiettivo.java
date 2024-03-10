@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class CartaNonObiettivo {
+public abstract class CartaNonObiettivo extends Carta{
 
     private ArrayList<Risorsa> risorseFronteAngoli;
     private int[] angoliFronteDisponibili;
