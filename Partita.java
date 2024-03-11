@@ -8,13 +8,15 @@ public class Partita {
     private MazzoObiettivo mazzoObiettivo;
     private MazzoOro mazzoOro;
     private MazzoIniziale mazzoIniziale;
+    private Tabellone tabellone;
 
-    public Partita(ArrayList<Giocatore> giocatori, MazzoRisorsa mazzoRisorsa, MazzoObiettivo mazzoObiettivo, MazzoOro mazzoOro, MazzoIniziale mazzoIniziale) {
+    public Partita(ArrayList<Giocatore> giocatori, MazzoRisorsa mazzoRisorsa, MazzoObiettivo mazzoObiettivo, MazzoOro mazzoOro, MazzoIniziale mazzoIniziale, Tabellone tabellone) {
         this.giocatori = giocatori;
         this.mazzoRisorsa = mazzoRisorsa;
         this.mazzoObiettivo = mazzoObiettivo;
         this.mazzoOro = mazzoOro;
         this.mazzoIniziale = mazzoIniziale;
+        this.tabellone = tabellone;
     }
 
     /**
