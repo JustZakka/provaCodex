@@ -5,6 +5,7 @@ public class Giocatore {
     private MazzoGiocatore mazzoGiocatore;
     private boolean firstPlayer;
     private Tavolo tavoloGiocatore;
+    private int punteggio;
 
     public Giocatore(String nomeGiocatore, Segnalino segnalino, MazzoGiocatore mazzoGiocatore,Tavolo tavoloGiocatore) {
         this.nomeGiocatore = nomeGiocatore;
@@ -58,12 +59,6 @@ public class Giocatore {
             mazzoGiocatore.getCarte().remove(cartaDaPiazzare);
             System.out.println("Carta " + cartaDaPiazzare.getClass() + " piazzata nello slot [" + rCartaDaPiazzare + "][" + cCartaDaPiazzare + "]." );
         }
-    }
-
-    public void pescaCarta() {
-        System.out.println("Che carta vuoi pescare ?");
-        System.out.println("1) Risorsa");
-        System.out.println("2) Oro");
     }
 
 
@@ -139,9 +134,9 @@ public class Giocatore {
     private boolean checkAngoloDisponibile(CartaNonObiettivo carta, int fronte, int angolo) {
         boolean flag;
         if (fronte == 1) {
-            flag = carta.getAngoliFronteDisponibili()[angolo] == 1;
+            flag = carta.getAngoliFronte().get(angolo).getAngoloDisponibile() == 1;
         } else {
-            flag = carta.getAngoliRetroDisponibili()[angolo] == 1;
+            flag = carta.getAngoliRetro().get(angolo).getAngoloDisponibile() == 1;
         }
         return flag;
     }
@@ -154,9 +149,9 @@ public class Giocatore {
      */
     private void updateAngolo(CartaNonObiettivo carta, int angolo) {
         if (carta.getPiazzataInFronte() == 1) {
-            carta.getAngoliFronteDisponibili()[angolo] = 0;
+            carta.getAngoliFronte().get(angolo).setAngoloDisponibile(0);
         } else {
-            carta.getAngoliRetroDisponibili()[angolo] = 0;
+            carta.getAngoliRetro().get(angolo).setAngoloDisponibile(0);
         }
     }
 

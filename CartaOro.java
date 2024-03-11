@@ -8,8 +8,8 @@ public class CartaOro extends CartaRisorsaOro {
     //TODO: aggiungere l'attributo requisitiPunti
 
 
-    public CartaOro(ArrayList<Risorsa> risorseFronteAngoli, int[] angoliFronteDisponibili, Risorsa risorsaRetro, int puntiAttribuiti, ArrayList<Risorsa> requisitiRisorse) {
-        super(risorseFronteAngoli, angoliFronteDisponibili, risorsaRetro);
+    public CartaOro(ArrayList<Angolo> angoliFronte, Risorsa risorsaRetroCentro, int puntiAttribuiti, ArrayList<Risorsa> requisitiRisorse) {
+        super(angoliFronte, risorsaRetroCentro);
         this.puntiAttribuiti = puntiAttribuiti;
         this.requisitiRisorse = requisitiRisorse;
     }

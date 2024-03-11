@@ -138,6 +138,18 @@ public class Partita {
         }
     }
 
+    private void scegliCartaSegreta(Giocatore giocatoreInGioco, CartaObiettivo carta1, CartaObiettivo carta2) {
+        Scanner scanner = new Scanner(System.in);
+        int sceltaGiocatore;
+        System.out.println("Scegli una Carta Obiettivo Segreto:");
+        System.out.println("1) " + carta1.getClass());
+        System.out.println("2) " + carta2.getClass());
+
+        sceltaGiocatore = scanner.nextInt();
+        giocatoreInGioco.getMazzoGiocatore().setCartaObiettivoSegreto( (sceltaGiocatore == 1? carta1 : carta2) );
+
+    }
+
     private void analisiTavolo(Giocatore giocatoreInGioco) {
         int riga, colonna;
         Scanner scanner = new Scanner(System.in);

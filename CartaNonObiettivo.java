@@ -3,41 +3,29 @@ import java.util.Arrays;
 
 public abstract class CartaNonObiettivo{
 
-    private ArrayList<Risorsa> risorseFronteAngoli;
-    private int[] angoliFronteDisponibili;
-    private int[] angoliRetroDisponibili;
+    private ArrayList<Angolo> angoliFronte;
+    private ArrayList<Angolo> angoliRetro;
     private int piazzataInFronte = 1;
 
-    public CartaNonObiettivo(ArrayList<Risorsa> risorseFronteAngoli, int[] angoliFronteDisponibili, int[] angoliRetroDisponibili) {
-        this.risorseFronteAngoli = risorseFronteAngoli;
-        this.angoliFronteDisponibili = angoliFronteDisponibili;
-        this.angoliRetroDisponibili = angoliRetroDisponibili;
-    }
-
-    @Override
-    public String toString() {
-        return "CartaNonObiettivo{" +
-                "risorseFronteAngoli=" + risorseFronteAngoli +
-                ", angoliFronteDisponibili=" + Arrays.toString(angoliFronteDisponibili) +
-                ", angoliRetroDisponibili=" + Arrays.toString(angoliRetroDisponibili) +
-                ", piazzataInFronte=" + piazzataInFronte +
-                '}';
+    public CartaNonObiettivo(ArrayList<Angolo> angoliFronte, ArrayList<Angolo> angoliRetro) {
+        this.angoliFronte = angoliFronte;
+        this.angoliRetro = angoliRetro;
     }
 
     /**
      * Printa a console gli angoli frontali della carta con [0] se non è disponibile e [1] se disponibile
      */
     public void printAngoliFronte() {
-        System.out.println("[" + angoliFronteDisponibili[3] + "][" + angoliFronteDisponibili[0] + "]");
-        System.out.println("[" + angoliFronteDisponibili[2] + "][" + angoliFronteDisponibili[1] + "]");
+        System.out.println("[" + angoliFronte.get(3).getAngoloDisponibile() + "][" + angoliFronte.get(0).getAngoloDisponibile() + "]");
+        System.out.println("[" + angoliFronte.get(2).getAngoloDisponibile() + "][" + angoliFronte.get(1).getAngoloDisponibile() + "]");
     }
 
     /**
      * Printa a console gli angoli posteriori della carta con [0] se non è disponibile e [1] se disponibile
      */
     public void printAngoliRetro() {
-        System.out.println("[" + angoliRetroDisponibili[3] + "][" + angoliRetroDisponibili[0] + "]");
-        System.out.println("[" + angoliRetroDisponibili[2] + "][" + angoliRetroDisponibili[1] + "]");
+        System.out.println("[" + angoliRetro.get(3).getAngoloDisponibile() + "][" + angoliRetro.get(0).getAngoloDisponibile() + "]");
+        System.out.println("[" + angoliRetro.get(2).getAngoloDisponibile() + "][" + angoliRetro.get(1).getAngoloDisponibile() + "]");
     }
 
     /**
@@ -48,22 +36,12 @@ public abstract class CartaNonObiettivo{
         return piazzataInFronte;
     }
 
-    /**
-     * Ritorna un array di dimensinoe 4 rappresentanti le disponibilità degli angoli frontali, a partire da quello in alto
-     * a destra in senso orario
-     * @return
-     */
-    public int[] getAngoliFronteDisponibili() {
-        return angoliFronteDisponibili;
+    public ArrayList<Angolo> getAngoliFronte() {
+        return angoliFronte;
     }
 
-    /**
-     * Ritorna un array di dimensinoe 4 rappresentanti le disponibilità degli angoli posteriori, a partire da quello in alto
-     * a destra in senso orario
-     * @return
-     */
-    public int[] getAngoliRetroDisponibili() {
-        return angoliRetroDisponibili;
+    public ArrayList<Angolo> getAngoliRetro() {
+        return angoliRetro;
     }
 
     public void setPiazzataInFronte(int piazzataInFronte) {
