@@ -1,35 +1,35 @@
 public class Slot {
 
-    private int slotOccupato;
-    private CartaNonObiettivo cartaSlot;
+    private int busySlot;
+    private NonObjectiveCard cardSlot;
 
     public Slot() {
-        this.slotOccupato = 0;
+        this.busySlot = 0;
     }
 
     public void analisiSlot() {
-        if (slotOccupato == 1) {
+        if (busySlot == 1) {
             System.out.println("Lo slot è occupato da una carta");
-            cartaSlot.toString();
+            cardSlot.toString();
         } else {
             System.out.println("Lo slot è libero");
         }
     }
 
     //GETTER
-    public int getSlotOccupato() {
-        return slotOccupato;
+    public int getBusySlot() {
+        return busySlot;
     }
-    public CartaNonObiettivo getCartaSlot() {
-        return cartaSlot;
+    public NonObjectiveCard getCardSlot() {
+        return cardSlot;
     }
 
     //SETTER
-    public void setSlotOccupato(int slotOccupato) {
-        this.slotOccupato = slotOccupato;
+    public void setBusySlot(int busySlot) {
+        this.busySlot = busySlot;
     }
 
-    public void setCartaSlot(CartaNonObiettivo cartaSlot) {
-        this.cartaSlot = cartaSlot;
+    public void setCardSlot(NonObjectiveCard cardSlot) {
+        this.cardSlot = cardSlot;
     }
 }

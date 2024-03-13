@@ -1,6 +1,6 @@
 public interface canShuffle {
 
-    void mischiaMazzo();
+    void shuffleDeck();
 
 
 }
