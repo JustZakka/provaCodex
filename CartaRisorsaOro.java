@@ -6,8 +6,8 @@ public abstract class CartaRisorsaOro extends CartaNonObiettivo{
 
     private Risorsa risorsaRetroCentro;
 
-    public CartaRisorsaOro(ArrayList<Angolo> angoliFronte, Risorsa risorsaRetroCentro) {
-        super(angoliFronte, new ArrayList<>(Arrays.asList(
+    public CartaRisorsaOro(int idCarta, String artRef, ArrayList<Angolo> angoliFronte, Risorsa risorsaRetroCentro) {
+        super(idCarta, artRef, angoliFronte, new ArrayList<>(Arrays.asList(
                 new Angolo(1, null),
                 new Angolo(1, null),
                 new Angolo(1, null),

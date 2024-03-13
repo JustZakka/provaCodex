@@ -1,4 +1,4 @@
-public abstract class Oggetto {
+public abstract class Oggetto extends RisorsaOggetto{
 
     private String tipoOggetto;
 

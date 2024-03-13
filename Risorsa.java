@@ -1,4 +1,4 @@
-public class Risorsa {
+public class Risorsa extends RisorsaOggetto{
 
     private String tipoRisorsa;
 

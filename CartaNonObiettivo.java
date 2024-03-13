@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class CartaNonObiettivo{
+public abstract class CartaNonObiettivo extends Carta{
 
     private ArrayList<Angolo> angoliFronte;
     private ArrayList<Angolo> angoliRetro;
     private int piazzataInFronte = 1;
 
-    public CartaNonObiettivo(ArrayList<Angolo> angoliFronte, ArrayList<Angolo> angoliRetro) {
+    public CartaNonObiettivo(int idCarta, String artRef, ArrayList<Angolo> angoliFronte, ArrayList<Angolo> angoliRetro) {
+        super(idCarta, artRef);
         this.angoliFronte = angoliFronte;
         this.angoliRetro = angoliRetro;
     }

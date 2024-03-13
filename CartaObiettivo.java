@@ -1,7 +1,8 @@
-public abstract class CartaObiettivo {
+public abstract class CartaObiettivo extends Carta{
     private int puntiAttribuiti;
 
-    public CartaObiettivo(int puntiAttribuiti) {
+    public CartaObiettivo(int idCarta, String artRef, int puntiAttribuiti) {
+        super(idCarta, artRef);
         this.puntiAttribuiti = puntiAttribuiti;
     }
 

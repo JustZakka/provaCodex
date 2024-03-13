@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 public abstract class CartaRisorsaVegetale extends CartaRisorsa {
 
-    public CartaRisorsaVegetale(ArrayList<Angolo> angoliFronte) {
-        super(angoliFronte, new Vegetale());
+
+    public CartaRisorsaVegetale(int idCarta, String artRef, ArrayList<Angolo> angoliFronte) {
+        super(idCarta, artRef, angoliFronte, new Vegetale());
     }
 }

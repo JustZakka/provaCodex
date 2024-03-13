@@ -1,11 +1,11 @@
 public class Angolo {
 
     private int angoloDisponibile;
-    private Risorsa risorsa;
+    private RisorsaOggetto risorsaOggetto;
 
-    public Angolo(int angoloDisponibile, Risorsa risorsa) {
+    public Angolo(int angoloDisponibile, RisorsaOggetto risorsa) {
         this.angoloDisponibile = angoloDisponibile;
-        this.risorsa = risorsa;
+        this.risorsaOggetto = risorsa;
     }
 
     public void setAngoloDisponibile(int angoloDisponibile) {
@@ -16,7 +16,7 @@ public class Angolo {
         return angoloDisponibile;
     }
 
-    public Risorsa getRisorsa() {
-        return risorsa;
+    public RisorsaOggetto getRisorsa() {
+        return risorsaOggetto;
     }
 }
